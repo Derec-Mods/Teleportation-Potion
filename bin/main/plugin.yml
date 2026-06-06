@@ -1,0 +1,8 @@
+name: Pioneer Compass
+version: '1.0.0.0'
+main: io.github.derexxd.pioneerCompass.PioneerCompass
+api-version: '1.18'
+prefix: DerexXD
+authors: [ DerexXD ]
+description: /rtp & /wild but for new players only
+website: https://www.derekchen.dev/
