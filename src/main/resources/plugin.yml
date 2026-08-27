@@ -4,5 +4,5 @@ main: io.github.derexxd.pioneerCompass.PioneerCompass
 api-version: '1.18'
 prefix: DerexXD
 authors: [ DerexXD ]
-description: /rtp & /wild but for new players only
+description: Teleportation potion for new players
 website: https://www.derekchen.dev/
