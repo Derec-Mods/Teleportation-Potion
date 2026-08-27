@@ -1,0 +1,8 @@
+potion:
+  name: "&dTeleportation Potion"
+  lore:
+    - "&7Drink to relocate"
+  color:
+    red: 148
+    green: 0
+    blue: 211
