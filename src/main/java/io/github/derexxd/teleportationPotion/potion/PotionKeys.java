@@ -1,13 +1,13 @@
-package io.github.derexxd.pioneerCompass.potion;
+package io.github.derexxd.teleportationPotion.potion;
 
-import io.github.derexxd.pioneerCompass.PioneerCompass;
+import io.github.derexxd.teleportationPotion.TeleportationPotion;
 import org.bukkit.NamespacedKey;
 
 public final class PotionKeys {
 
     private final NamespacedKey teleportationPotion;
 
-    public PotionKeys(PioneerCompass plugin) {
+    public PotionKeys(TeleportationPotion plugin) {
         this.teleportationPotion = new NamespacedKey(plugin, "teleportation_potion");
     }
 

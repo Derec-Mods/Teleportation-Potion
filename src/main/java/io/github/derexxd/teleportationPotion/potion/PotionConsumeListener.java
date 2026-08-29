@@ -1,4 +1,4 @@
-package io.github.derexxd.pioneerCompass.potion;
+package io.github.derexxd.teleportationPotion.potion;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

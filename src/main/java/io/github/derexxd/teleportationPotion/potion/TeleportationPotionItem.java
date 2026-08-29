@@ -1,6 +1,6 @@
-package io.github.derexxd.pioneerCompass.potion;
+package io.github.derexxd.teleportationPotion.potion;
 
-import io.github.derexxd.pioneerCompass.PioneerCompass;
+import io.github.derexxd.teleportationPotion.TeleportationPotion;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -16,10 +16,10 @@ import java.util.List;
 
 public final class TeleportationPotionItem {
 
-    private final PioneerCompass plugin;
+    private final TeleportationPotion plugin;
     private final PotionKeys keys;
 
-    public TeleportationPotionItem(PioneerCompass plugin, PotionKeys keys) {
+    public TeleportationPotionItem(TeleportationPotion plugin, PotionKeys keys) {
         this.plugin = plugin;
         this.keys = keys;
     }
