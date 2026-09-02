@@ -6,3 +6,13 @@ potion:
     red: 148
     green: 0
     blue: 211
+
+rtp:
+  world: world
+  min-range: 500
+  max-range: 5000
+  pool-size: 16
+  refill-interval-ticks: 100
+  attempts-per-cycle: 2
+  max-find-attempts: 40
+  samples-per-chunk: 8
