@@ -6,3 +6,13 @@ prefix: DerexXD
 authors: [ DerexXD ]
 description: Teleportation potion for new players
 website: https://www.derekchen.dev/
+
+commands:
+  tpgive:
+    description: Give yourself a teleportation potion
+    permission: teleportationpotion.give
+
+permissions:
+  teleportationpotion.give:
+    description: Give yourself a teleportation potion
+    default: op
