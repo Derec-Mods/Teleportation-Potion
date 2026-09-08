@@ -2,6 +2,7 @@ package io.github.derexxd.teleportationPotion;
 
 import io.github.derexxd.teleportationPotion.commands.GiveCommand;
 import io.github.derexxd.teleportationPotion.potion.PotionConsumeListener;
+import io.github.derexxd.teleportationPotion.potion.PotionJoinListener;
 import io.github.derexxd.teleportationPotion.potion.PotionKeys;
 import io.github.derexxd.teleportationPotion.potion.TeleportationPotionItem;
 import io.github.derexxd.teleportationPotion.rtp.LocationFinder;
@@ -32,6 +33,7 @@ public final class TeleportationPotion extends JavaPlugin {
         TeleportationPotionItem teleportationPotion = new TeleportationPotionItem(this, keys);
 
         getCommand("tpgive").setExecutor(new GiveCommand(teleportationPotion));
+        getServer().getPluginManager().registerEvents(new PotionJoinListener(teleportationPotion), this);
         getServer().getPluginManager().registerEvents(new PotionConsumeListener(teleportationPotion, rtpService), this);
         getServer().getPluginManager().registerEvents(new WorldReadyListener(this, preloader), this);
 
