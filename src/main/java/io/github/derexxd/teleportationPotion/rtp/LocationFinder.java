@@ -40,10 +40,12 @@ public final class LocationFinder {
         int[] xz = randomPoint(world);
         int x = xz[0];
         int z = xz[1];
+        int chunkX = x >> 4;
+        int chunkZ = z >> 4;
 
-        world.getChunkAtAsync(x >> 4, z >> 4).thenAccept(chunk ->
+        load3x3(world, chunkX, chunkZ).thenRun(() ->
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    if (!chunk.isLoaded()) {
+                    if (!world.isChunkLoaded(chunkX, chunkZ)) {
                         tryFind(world, attempt + 1, result);
                         return;
                     }
@@ -56,6 +58,17 @@ public final class LocationFinder {
                     tryFind(world, attempt + 1, result);
                 })
         );
+    }
+
+    private CompletableFuture<Void> load3x3(World world, int chunkX, int chunkZ) {
+        CompletableFuture<?>[] loads = new CompletableFuture[9];
+        int i = 0;
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dz = -1; dz <= 1; dz++) {
+                loads[i++] = world.getChunkAtAsync(chunkX + dx, chunkZ + dz);
+            }
+        }
+        return CompletableFuture.allOf(loads);
     }
 
     private Location sampleChunk(World world, int originX, int originZ) {
