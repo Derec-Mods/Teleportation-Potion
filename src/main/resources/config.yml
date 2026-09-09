@@ -1,5 +1,6 @@
 #  name/lore use & color codes for minecraft
 # color is the bottle tint (0-255)
+# starter-bottles is how many potions a first-join player gets
 potion:
   name: "&dTeleportation Potion"
   lore:
@@ -8,6 +9,7 @@ potion:
     red: 148
     green: 0
     blue: 211
+  starter-bottles: 3
 
 # world = overworld name
 # min/max-range = distance from 0,0 (setting max to 0 will use the world border)

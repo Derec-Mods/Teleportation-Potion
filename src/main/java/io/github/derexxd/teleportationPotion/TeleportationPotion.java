@@ -17,11 +17,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class TeleportationPotion extends JavaPlugin {
 
+    public static int STARTER_BOTTLES;
+
     private LocationPreloader preloader;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        STARTER_BOTTLES = Math.max(0, getConfig().getInt("potion.starter-bottles", 3));
 
         LocationPool pool = new LocationPool();
         SafetyChecker safetyChecker = new SafetyChecker(this);
