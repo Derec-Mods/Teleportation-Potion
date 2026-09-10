@@ -52,10 +52,18 @@ public final class TeleportationPotionItem {
     }
 
     private Color readColor() {
-        int red = plugin.getConfig().getInt("potion.color.red", 148);
-        int green = plugin.getConfig().getInt("potion.color.green", 0);
-        int blue = plugin.getConfig().getInt("potion.color.blue", 211);
-        return Color.fromRGB(red, green, blue);
+        String hex = plugin.getConfig().getString("potion.color", "#9400D3");
+        if (hex == null) {
+            return Color.fromRGB(0x9400D3);
+        }
+        if (hex.startsWith("#")) {
+            hex = hex.substring(1);
+        }
+        try {
+            return Color.fromRGB(Integer.parseInt(hex, 16));
+        } catch (NumberFormatException ignored) {
+            return Color.fromRGB(0x9400D3);
+        }
     }
 
     private List<String> readLore() {

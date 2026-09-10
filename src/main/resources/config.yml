@@ -1,14 +1,11 @@
 #  name/lore use & color codes for minecraft
-# color is the bottle tint (0-255)
+# color is the bottle tint as hex (e.g. #9400D3)
 # starter-bottles is how many potions a first-join player gets
 potion:
   name: "&dTeleportation Potion"
   lore:
     - "&7Drink to relocate"
-  color:
-    red: 148
-    green: 0
-    blue: 211
+  color: "#9400D3"
   starter-bottles: 3
 
 # world = overworld name
