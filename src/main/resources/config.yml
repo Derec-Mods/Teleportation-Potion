@@ -16,6 +16,7 @@ potion:
 # max-find-attempts = retries per search
 # samples-per-chunk = checks inside one chunk
 # generate-chunks = if new chunks should be generated during the search, or if we should only use existing chunks already generated in the world
+# max-inhabited-ticks = maximum number of ticks before a chunk is counted as invalid (to prevent players from teleporting to established bases)
 rtp:
   world: world
   min-range: 500
@@ -26,3 +27,4 @@ rtp:
   max-find-attempts: 40
   samples-per-chunk: 8
   generate-chunks: true
+  max-inhabited-ticks: 72000

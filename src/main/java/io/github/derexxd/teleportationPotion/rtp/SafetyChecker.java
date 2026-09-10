@@ -64,6 +64,10 @@ public final class SafetyChecker {
         if (!isInsideRange(location) || !world.getWorldBorder().isInside(location)) {
             return null;
         }
+        if (TeleportationPotion.MAX_INHABITED_TICKS > 0
+                && world.getChunkAt(x >> 4, z >> 4).getInhabitedTime() > TeleportationPotion.MAX_INHABITED_TICKS) {
+            return null;
+        }
         return location;
     }
 
