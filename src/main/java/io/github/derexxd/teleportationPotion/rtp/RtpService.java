@@ -28,6 +28,7 @@ public final class RtpService {
         Location location = pool.poll();
         if (location != null) {
             player.teleport(location);
+            pool.release(location);
             refillAsync(location.getWorld());
             return;
         }
