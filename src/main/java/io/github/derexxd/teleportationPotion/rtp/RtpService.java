@@ -9,6 +9,7 @@ package io.github.derexxd.teleportationPotion.rtp;
 
 import io.github.derexxd.teleportationPotion.TeleportationPotion;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -28,6 +29,7 @@ public final class RtpService {
         Location location = pool.poll();
         if (location != null) {
             player.teleport(location);
+            playTeleportSound(player);
             pool.release(location);
             refillAsync(location.getWorld());
             return;
@@ -44,9 +46,14 @@ public final class RtpService {
                         return;
                     }
                     player.teleport(found);
+                    playTeleportSound(player);
                     refillAsync(found.getWorld());
                 })
         );
+    }
+
+    private void playTeleportSound(Player player) {
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
     }
 
     private void refillAsync(World world) {
