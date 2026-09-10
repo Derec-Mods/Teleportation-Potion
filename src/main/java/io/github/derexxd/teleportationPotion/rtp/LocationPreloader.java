@@ -46,6 +46,7 @@ public final class LocationPreloader {
     private void tick() {
         int poolSize = plugin.getConfig().getInt("rtp.pool-size", 16);
         if (pool.size() >= poolSize) {
+            stop();
             return;
         }
 

@@ -63,11 +63,13 @@ public final class RtpService {
         if (world == null) {
             return;
         }
-        finder.find(world).thenAccept(replacement -> {
-            if (replacement != null) {
-                pool.offer(replacement);
-            }
-        });
+        finder.find(world).thenAccept(replacement ->
+                plugin.getServer().getScheduler().runTask(plugin, () -> {
+                    if (replacement != null) {
+                        pool.offer(replacement);
+                    }
+                })
+        );
     }
 
     private World resolveWorld(Player player) {
