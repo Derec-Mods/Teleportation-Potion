@@ -41,6 +41,10 @@ public final class TeleportationPotionItem {
         return item;
     }
 
+    /**
+     * Check if the provided potion is a tp potion (important!!)
+     * Can not be faked, we check the PDC
+     */
     public boolean isTeleportationPotion(ItemStack item) {
         if (item == null || item.getType() != Material.POTION) {
             return false;
