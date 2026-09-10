@@ -1,5 +1,5 @@
 name: TeleportationPotion
-version: '1.0.1.2'
+version: '${version}'
 main: io.github.derexxd.teleportationPotion.TeleportationPotion
 api-version: '1.18'
 prefix: DerexXD
