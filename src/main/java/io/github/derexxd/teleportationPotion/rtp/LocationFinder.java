@@ -48,6 +48,10 @@ public final class LocationFinder {
             z = xz[1];
             chunkX = x >> 4;
             chunkZ = z >> 4;
+
+            // this loop will only run if we do not want to generate new chunks
+            // it will keep running until we find a suitable one, or the count goes over
+            // this prevents the ungenerated chunk count from being counted as a failure
             if (TeleportationPotion.GENERATE_CHUNKS || world.isChunkGenerated(chunkX, chunkZ)) {
                 break;
             }
