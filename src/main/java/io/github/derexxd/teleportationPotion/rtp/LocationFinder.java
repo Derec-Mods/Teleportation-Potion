@@ -48,19 +48,22 @@ public final class LocationFinder {
             return;
         }
 
-        load3x3(world, chunkX, chunkZ).thenRun(() ->
+        world.getChunkAtAsync(chunkX, chunkZ, TeleportationPotion.GENERATE_CHUNKS).thenAccept(chunk ->
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    if (!world.isChunkLoaded(chunkX, chunkZ)) {
+                    if (chunk == null || !chunk.isLoaded()) {
                         tryFind(world, attempt + 1, result);
                         return;
                     }
 
                     Location location = sampleChunk(world, x, z);
-                    if (location != null) {
-                        result.complete(location);
+                    if (location == null) {
+                        tryFind(world, attempt + 1, result);
                         return;
                     }
-                    tryFind(world, attempt + 1, result);
+
+                    load3x3(world, chunkX, chunkZ).thenRun(() ->
+                            plugin.getServer().getScheduler().runTask(plugin, () -> result.complete(location))
+                    );
                 })
         );
     }
