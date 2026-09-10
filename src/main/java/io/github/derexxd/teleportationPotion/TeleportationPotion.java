@@ -20,6 +20,7 @@ public final class TeleportationPotion extends JavaPlugin {
     public static int STARTER_BOTTLES;
     public static boolean GENERATE_CHUNKS;
     public static long MAX_INHABITED_TICKS;
+    public static int MAX_UNGENERATED_SKIPS;
 
     private LocationPreloader preloader;
     private LocationPool pool;
@@ -30,6 +31,7 @@ public final class TeleportationPotion extends JavaPlugin {
         STARTER_BOTTLES = Math.max(0, getConfig().getInt("potion.starter-bottles", 3));
         GENERATE_CHUNKS = getConfig().getBoolean("rtp.generate-chunks", true);
         MAX_INHABITED_TICKS = Math.max(0, getConfig().getLong("rtp.max-inhabited-ticks", 72000));
+        MAX_UNGENERATED_SKIPS = Math.max(0, getConfig().getInt("rtp.max-ungenerated-skips", 2000));
 
         pool = new LocationPool(this);
         SafetyChecker safetyChecker = new SafetyChecker(this);

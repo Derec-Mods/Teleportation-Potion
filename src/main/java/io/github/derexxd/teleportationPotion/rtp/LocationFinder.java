@@ -37,31 +37,50 @@ public final class LocationFinder {
             return;
         }
 
-        int[] xz = randomPoint(world);
-        int x = xz[0];
-        int z = xz[1];
-        int chunkX = x >> 4;
-        int chunkZ = z >> 4;
-
-        if (!TeleportationPotion.GENERATE_CHUNKS && !world.isChunkGenerated(chunkX, chunkZ)) {
-            tryFind(world, attempt + 1, result);
-            return;
+        int x;
+        int z;
+        int chunkX;
+        int chunkZ;
+        int skips = 0;
+        while (true) {
+            int[] xz = randomPoint(world);
+            x = xz[0];
+            z = xz[1];
+            chunkX = x >> 4;
+            chunkZ = z >> 4;
+            if (TeleportationPotion.GENERATE_CHUNKS || world.isChunkGenerated(chunkX, chunkZ)) {
+                break;
+            }
+            skips++;
+            int skipLimit = TeleportationPotion.MAX_UNGENERATED_SKIPS;
+            if (skipLimit <= 0) {
+                skipLimit = 100000;
+            }
+            if (skips > skipLimit) {
+                result.complete(null);
+                return;
+            }
         }
 
-        world.getChunkAtAsync(chunkX, chunkZ, TeleportationPotion.GENERATE_CHUNKS).thenAccept(chunk ->
+        final int findX = x;
+        final int findZ = z;
+        final int findChunkX = chunkX;
+        final int findChunkZ = chunkZ;
+
+        world.getChunkAtAsync(findChunkX, findChunkZ, TeleportationPotion.GENERATE_CHUNKS).thenAccept(chunk ->
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
                     if (chunk == null || !chunk.isLoaded()) {
                         tryFind(world, attempt + 1, result);
                         return;
                     }
 
-                    Location location = sampleChunk(world, x, z);
+                    Location location = sampleChunk(world, findX, findZ);
                     if (location == null) {
                         tryFind(world, attempt + 1, result);
                         return;
                     }
 
-                    load3x3(world, chunkX, chunkZ).thenRun(() ->
+                    load3x3(world, findChunkX, findChunkZ).thenRun(() ->
                             plugin.getServer().getScheduler().runTask(plugin, () -> result.complete(location))
                     );
                 })
