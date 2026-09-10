@@ -43,6 +43,11 @@ public final class LocationFinder {
         int chunkX = x >> 4;
         int chunkZ = z >> 4;
 
+        if (!TeleportationPotion.GENERATE_CHUNKS && !world.isChunkGenerated(chunkX, chunkZ)) {
+            tryFind(world, attempt + 1, result);
+            return;
+        }
+
         load3x3(world, chunkX, chunkZ).thenRun(() ->
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
                     if (!world.isChunkLoaded(chunkX, chunkZ)) {
@@ -65,7 +70,7 @@ public final class LocationFinder {
         int i = 0;
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
-                loads[i++] = world.getChunkAtAsync(chunkX + dx, chunkZ + dz);
+                loads[i++] = world.getChunkAtAsync(chunkX + dx, chunkZ + dz, TeleportationPotion.GENERATE_CHUNKS);
             }
         }
         return CompletableFuture.allOf(loads);

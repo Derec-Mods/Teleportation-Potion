@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class TeleportationPotion extends JavaPlugin {
 
     public static int STARTER_BOTTLES;
+    public static boolean GENERATE_CHUNKS;
 
     private LocationPreloader preloader;
     private LocationPool pool;
@@ -26,6 +27,7 @@ public final class TeleportationPotion extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         STARTER_BOTTLES = Math.max(0, getConfig().getInt("potion.starter-bottles", 3));
+        GENERATE_CHUNKS = getConfig().getBoolean("rtp.generate-chunks", true);
 
         pool = new LocationPool(this);
         SafetyChecker safetyChecker = new SafetyChecker(this);

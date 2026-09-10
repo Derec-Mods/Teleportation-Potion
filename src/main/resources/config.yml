@@ -15,6 +15,7 @@ potion:
 # attempts-per-cycle = new spots tried each refill
 # max-find-attempts = retries per search
 # samples-per-chunk = checks inside one chunk
+# generate-chunks = if new chunks should be generated during the search, or if we should only use existing chunks already generated in the world
 rtp:
   world: world
   min-range: 500
@@ -24,3 +25,4 @@ rtp:
   attempts-per-cycle: 2
   max-find-attempts: 40
   samples-per-chunk: 8
+  generate-chunks: true
