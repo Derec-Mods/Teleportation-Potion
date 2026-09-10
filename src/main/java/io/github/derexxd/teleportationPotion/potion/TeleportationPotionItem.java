@@ -56,9 +56,9 @@ public final class TeleportationPotionItem {
     }
 
     private Color readColor() {
-        String hex = plugin.getConfig().getString("potion.color", "#9400D3");
+        String hex = plugin.getConfig().getString("potion.color", "#1AEDED");
         if (hex == null) {
-            return Color.fromRGB(0x9400D3);
+            return Color.fromRGB(0x1AEDED);
         }
         if (hex.startsWith("#")) {
             hex = hex.substring(1);
@@ -66,7 +66,7 @@ public final class TeleportationPotionItem {
         try {
             return Color.fromRGB(Integer.parseInt(hex, 16));
         } catch (NumberFormatException ignored) {
-            return Color.fromRGB(0x9400D3);
+            return Color.fromRGB(0x1AEDED);
         }
     }
 
