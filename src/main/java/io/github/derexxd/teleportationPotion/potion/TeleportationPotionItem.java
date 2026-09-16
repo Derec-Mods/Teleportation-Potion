@@ -76,7 +76,7 @@ public final class TeleportationPotionItem {
             lore.add(colorize(line));
         }
         if (lore.isEmpty()) {
-            lore.add(colorize("&7Drink to relocate"));
+            lore.add(colorize("&7/rtp but in a bottle!"));
         }
         return lore;
     }

@@ -4,7 +4,7 @@
 potion:
   name: "&dTeleportation Potion"
   lore:
-    - "&7Drink to relocate"
+    - "&7/rtp but in a bottle!"
   color: "#1AEDED"
   starter-bottles: 3
 

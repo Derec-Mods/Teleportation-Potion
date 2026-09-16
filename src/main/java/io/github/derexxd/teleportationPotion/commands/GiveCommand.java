@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public final class GiveCommand implements CommandExecutor {
 
@@ -19,7 +20,23 @@ public final class GiveCommand implements CommandExecutor {
         if (!(sender instanceof Player player)) {
             return true;
         }
-        player.getInventory().addItem(potionItem.create());
+
+        int amount = 1;
+        if (args.length >= 1) {
+            try {
+                amount = Integer.parseInt(args[0]);
+            } catch (NumberFormatException ignored) {
+                return false;
+            }
+        }
+        if (amount < 1) {
+            return false;
+        }
+        amount = Math.min(amount, 64);
+
+        ItemStack bottles = potionItem.create();
+        bottles.setAmount(amount);
+        player.getInventory().addItem(bottles);
         return true;
     }
 }
