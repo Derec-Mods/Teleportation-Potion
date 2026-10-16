@@ -42,7 +42,9 @@ public final class TeleportationPotion extends JavaPlugin {
         PotionKeys keys = new PotionKeys(this);
         TeleportationPotionItem teleportationPotion = new TeleportationPotionItem(this, keys);
 
-        getCommand("tpgive").setExecutor(new GiveCommand(teleportationPotion));
+        GiveCommand giveCommand = new GiveCommand(teleportationPotion);
+        getCommand("tpgive").setExecutor(giveCommand);
+        getCommand("tpgive").setTabCompleter(giveCommand);
         getServer().getPluginManager().registerEvents(new PotionJoinListener(teleportationPotion), this);
         getServer().getPluginManager().registerEvents(new PotionConsumeListener(teleportationPotion, rtpService), this);
         getServer().getPluginManager().registerEvents(new WorldReadyListener(this, preloader), this);

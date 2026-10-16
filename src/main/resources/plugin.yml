@@ -9,10 +9,11 @@ website: https://www.derekchen.dev/
 
 commands:
   tpgive:
-    description: Give yourself a teleportation potion
+    description: Give teleportation potion
+    usage: /<command> [player|selector] [amount]
     permission: teleportationpotion.give
 
 permissions:
   teleportationpotion.give:
-    description: Give yourself a teleportation potion
+    description: Give teleportation potion
     default: op
