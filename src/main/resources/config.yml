@@ -7,6 +7,7 @@ potion:
     - "&7/rtp but in a bottle!"
   color: "#1AEDED"
   starter-bottles: 3
+  keep-on-death: true
 
 # world = overworld name
 # min/max-range = distance from 0,0 (setting max to 0 will use the world border)

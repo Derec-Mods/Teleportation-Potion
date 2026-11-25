@@ -2,6 +2,7 @@ package io.github.derexxd.teleportationPotion;
 
 import io.github.derexxd.teleportationPotion.commands.GiveCommand;
 import io.github.derexxd.teleportationPotion.potion.PotionConsumeListener;
+import io.github.derexxd.teleportationPotion.potion.PotionDeathListener;
 import io.github.derexxd.teleportationPotion.potion.PotionJoinListener;
 import io.github.derexxd.teleportationPotion.potion.PotionKeys;
 import io.github.derexxd.teleportationPotion.potion.TeleportationPotionItem;
@@ -18,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class TeleportationPotion extends JavaPlugin {
 
     public static int STARTER_BOTTLES;
+    public static boolean KEEP_ON_DEATH;
     public static boolean GENERATE_CHUNKS;
     public static long MAX_INHABITED_TICKS;
     public static int MAX_UNGENERATED_SKIPS;
@@ -29,6 +31,7 @@ public final class TeleportationPotion extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         STARTER_BOTTLES = Math.max(0, getConfig().getInt("potion.starter-bottles", 3));
+        KEEP_ON_DEATH = getConfig().getBoolean("potion.keep-on-death", true);
         GENERATE_CHUNKS = getConfig().getBoolean("rtp.generate-chunks", true);
         MAX_INHABITED_TICKS = Math.max(0, getConfig().getLong("rtp.max-inhabited-ticks", 72000));
         MAX_UNGENERATED_SKIPS = Math.max(0, getConfig().getInt("rtp.max-ungenerated-skips", 2000));
@@ -47,6 +50,7 @@ public final class TeleportationPotion extends JavaPlugin {
         getCommand("tpgive").setTabCompleter(giveCommand);
         getServer().getPluginManager().registerEvents(new PotionJoinListener(teleportationPotion), this);
         getServer().getPluginManager().registerEvents(new PotionConsumeListener(teleportationPotion, rtpService), this);
+        getServer().getPluginManager().registerEvents(new PotionDeathListener(teleportationPotion), this);
         getServer().getPluginManager().registerEvents(new WorldReadyListener(this, preloader), this);
 
         if (getServer().getWorld(getConfig().getString("rtp.world", "world")) != null) {
